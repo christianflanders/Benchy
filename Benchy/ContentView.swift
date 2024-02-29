@@ -1,24 +1,29 @@
-//
-//  ContentView.swift
-//  Benchy
-//
-//  Created by Flanders, Christian on 2/29/24.
-//
-
 import SwiftUI
+import ComposableArchitecture
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+  let store: StoreOf<Counter>
+
+  var body: some View {
+    WithViewStore(self.store, observe: { $0 }) { viewStore in
+      HStack {
+        Button {
+          viewStore.send(.decrementButtonTapped)
+        } label: {
+          Image(systemName: "minus")
         }
-        .padding()
+
+          Text("fdhhasdfhasdfhasdf")
+        Text("\(viewStore.count)")
+          .monospacedDigit()
+
+        Button {
+          viewStore.send(.incrementButtonTapped)
+        } label: {
+          Image(systemName: "plus")
+        }
+      }
     }
+  }
 }
 
-#Preview {
-    ContentView()
-}

@@ -11,7 +11,9 @@ import SwiftUI
 struct BenchyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(store: .init(initialState: Counter.State(), reducer: {
+                Counter()
+            }))
         }
     }
 }
